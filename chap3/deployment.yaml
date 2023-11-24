@@ -1,0 +1,20 @@
+# Deployment는 template을 통해서 여러개의 Pod를 생성한다.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deploy-nginx
+  name: deploy-nginx
+spec:
+  replicas: 3
+  selector: # 아래의 template과 연결되는 속성, selector가 template을 선택 하기에 app 프로퍼티가 동일해야함
+    matchLabels:
+      app: nginx
+  template: # Pod를 찍어내는 틀 == Pod와 yaml이 동일함
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
