@@ -17,4 +17,9 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx
+          image: nginx:latest
+  strategy:
+      type: RollingUpdate
+      rollingUpdate:
+          maxSurge: 3
+          maxUnavailable: 3
